@@ -12,6 +12,7 @@
 ___
 
 This project contains a gradle development project for a running .jar application of the Netburner-AutoUpdate Tool for ARM based systems.
+The project is based on the Java code for the Netburner Autoupdate for OS X (autoupdate-java.zip) from October 2018.
 Your development machine will need the default-jdk to run the cradle build, install it via:
 
     sudo apt update

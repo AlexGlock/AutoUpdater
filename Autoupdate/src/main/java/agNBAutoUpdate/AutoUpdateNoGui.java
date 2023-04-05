@@ -145,7 +145,6 @@ public class AutoUpdateNoGui {
                     boolean rv = NetBurnerCoreUpdate.CoreUpdateAction(new DummyDoUpdate(),
                             IPAddress, tfFileName, RebootCheck, UserName, PassWord);
                     if (rv == false) {
-                        System.out.println("Connection Error - please retry");
                         System.exit(1);
                     }
         } else {

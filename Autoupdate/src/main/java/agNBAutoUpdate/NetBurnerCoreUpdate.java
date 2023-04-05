@@ -428,6 +428,7 @@ public class NetBurnerCoreUpdate {
                         return;
                     case 4:
                         this.m_nbu.NotifyError("Device refused to shutdown", 3);
+                        System.out.println("authorization Error - reboot device");
                         this.m_eState = update_state.AuthFailed;
                         return;
                 }
@@ -480,7 +481,7 @@ public class NetBurnerCoreUpdate {
                 if (this.m_nRetries > this.m_nMaxRetry) {
                     this.m_nMaxRetry = this.m_nRetries;
                 }
-                if (this.m_nRetries > 300 ) {
+                if (this.m_nRetries > 200 ) {
                     this.m_eState = update_state.TimedOut;
                     this.m_nbu.NotifyError("ERROR - Timed out", 7);
                     System.exit(1);
@@ -510,7 +511,7 @@ public class NetBurnerCoreUpdate {
         try {
             this.m_ds = new DatagramSocket(20034);
             this.m_nbu.SetPercentDone(0);
-            this.m_ds.setSoTimeout(10);
+            this.m_ds.setSoTimeout(2);
             // This code initially sends the first packet and then waits for timeout ms before checking if a reply was received.
             // this.m_ds.receive(incommingPacket) is blocking until timeout or length has been received.
             // The initial timeout was 250 ms.
@@ -534,6 +535,11 @@ public class NetBurnerCoreUpdate {
                     }
                     NB_Update_DataGramRecord Rxp = new NB_Update_DataGramRecord(incomingPacket);
                     ProcessPacket(Rxp);
+                    if (this.m_eState == update_state.AuthFailed) {
+                        this.m_ds.close();
+                        this.m_nbu.NotifyError("Abort requested", 8);
+                        return false;
+                    }
                 } catch (SocketTimeoutException e) {
                     if (this.m_nbu.ShouldAbort()) {
                         this.m_ds.close();
@@ -548,6 +554,7 @@ public class NetBurnerCoreUpdate {
                 this.m_ds.close();
             }
             System.out.println("General exception " + e);
+            System.out.println("Connection Error - retry update");
             return false;
         }
         System.out.println("max retries: " + this.m_nMaxRetry);
