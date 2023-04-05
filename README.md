@@ -11,13 +11,17 @@
 ## Netburner AutoUpdate for ARM based platforms ##
 ___
 
-This project contains the whole gradle development project for a running .jar application
-System requirement is the default-jdk:
+This project contains a gradle development project for a running .jar application of the Netburner-AutoUpdate Tool for ARM based systems.
+Your development machine will need the default-jdk to run the cradle build, install it via:
 
     sudo apt update
     sudo apt install default-jdk
 
-the build process can be started by:
+The build process can be started by:
 
     ./gradlew build
+
+Another usefull command, that lists all available gradle properties:
+
+    ./gradlew tasks
 

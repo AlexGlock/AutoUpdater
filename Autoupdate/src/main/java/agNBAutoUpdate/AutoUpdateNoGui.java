@@ -134,7 +134,7 @@ public class AutoUpdateNoGui {
                 System.out.println("Using IP Address: " + IPAddress);
             } else {
                 System.out.println("Invalid selection. Aborting!");
-                System.exit(0);
+                System.exit(1);
             }
             //kbd.close();
         }
@@ -142,8 +142,12 @@ public class AutoUpdateNoGui {
         if (bAutoRun) {
             System.out.println("Autorun active.");
             System.out.println("Programming!");
-                    NetBurnerCoreUpdate.CoreUpdateAction(new DummyDoUpdate(),
+                    boolean rv = NetBurnerCoreUpdate.CoreUpdateAction(new DummyDoUpdate(),
                             IPAddress, tfFileName, RebootCheck, UserName, PassWord);
+                    if (rv == false) {
+                        System.out.println("Connection Error - please retry");
+                        System.exit(1);
+                    }
         } else {
             System.out.println("Start programming [Y/n]?");
             Scanner kbd = new Scanner(System.in);
@@ -157,7 +161,7 @@ public class AutoUpdateNoGui {
                     break;
                 default:
                     System.out.println("Aborting!");
-                    System.exit(0);
+                    System.exit(1);
             }
             //kbd.close();
         }

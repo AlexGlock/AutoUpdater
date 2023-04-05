@@ -480,7 +480,7 @@ public class NetBurnerCoreUpdate {
                 if (this.m_nRetries > this.m_nMaxRetry) {
                     this.m_nMaxRetry = this.m_nRetries;
                 }
-                if (this.m_nRetries > 9 || (this.m_eState == update_state.Starting && this.m_nRetries >= 2)) {
+                if (this.m_nRetries > 300 ) {
                     this.m_eState = update_state.TimedOut;
                     this.m_nbu.NotifyError("ERROR - Timed out", 7);
                     System.exit(1);
@@ -510,7 +510,7 @@ public class NetBurnerCoreUpdate {
         try {
             this.m_ds = new DatagramSocket(20034);
             this.m_nbu.SetPercentDone(0);
-            this.m_ds.setSoTimeout(20);
+            this.m_ds.setSoTimeout(10);
             // This code initially sends the first packet and then waits for timeout ms before checking if a reply was received.
             // this.m_ds.receive(incommingPacket) is blocking until timeout or length has been received.
             // The initial timeout was 250 ms.
@@ -519,6 +519,8 @@ public class NetBurnerCoreUpdate {
             // If the timeout is to small and the acknowledge is not received, then the code exits imediately.
             // So far 20 seemed ok, but will likely fail under certain circumstances.
             // TODO: Find a better solution then to always wait for the maximum timeout, so the timeout can be longer to accomodate delays but is not taken into account if the answer we are waiting for has already arrived.
+            // FIX from A.G.: I trimmed the socket Timeout down to 10ms and increased the maximum number of retries from 10 to 500 and remove {|| (this.m_eState == update_state.Starting && this.m_nRetries >= 2)} as argument (line 483).
+            // This allows a max delay of 5s, while running fast enough on socket.receive().
             SendPacket();
             do {
                 try {
@@ -548,6 +550,7 @@ public class NetBurnerCoreUpdate {
             System.out.println("General exception " + e);
             return false;
         }
+        System.out.println("max retries: " + this.m_nMaxRetry);
         this.m_ds.close();
         return true;
     }

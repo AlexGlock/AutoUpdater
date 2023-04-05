@@ -5,3 +5,6 @@
 build
 Autoupdate/bin
 agNBAutoUpdate.jar
+
+# Ignore test binaries
+*.s19
