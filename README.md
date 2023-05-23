@@ -16,12 +16,24 @@ The project is based on the Java code for the Netburner Autoupdate for OS X (aut
 Your development machine will need the default-jdk to run the cradle build, install it via:
 
     sudo apt update
-    sudo apt install default-jdk
+    sudo apt upgrade
+    sudo apt-get install default-jre
+
+Project depencies setup:
+
+    sudo apt-get install make libtool pkg-config autoconf automake texinfo git libusb-1.0 libusb-0.1 libusb-dev
+    sudo apt-get install cmake subversion libftdi1 libftdi1-dev
+    
+Clone the repository:
+
+    git clone https://github.com/AlexGlock/AutoUpdater.git
+    cd AutoUpdater
 
 The build process can be started by:
 
     ./gradlew build
 
+Your Java Application will be build in AutoUpdater/Autoupdate/build/libs
 Another usefull command, that lists all available gradle properties:
 
     ./gradlew tasks
