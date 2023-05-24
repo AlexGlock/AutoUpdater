@@ -9,7 +9,7 @@
                                   |_|                        
 
 ## Netburner AutoUpdate for ARM based platforms ##
-___
+
 
 This project contains a gradle development project for a running .jar application of the Netburner-AutoUpdate Tool for ARM based systems.
 The project is based on the Java code for the Netburner Autoupdate for OS X (autoupdate-java.zip) from October 2018.
@@ -19,7 +19,7 @@ Your development machine will need the default-jdk to run the cradle build, inst
     sudo apt upgrade
     sudo apt-get install default-jre
 
-Project depencies setup:
+Project depencies setup (a little overkill - probably you will only need git and libusb):
 
     sudo apt-get install make libtool pkg-config autoconf automake texinfo git libusb-1.0 libusb-0.1 libusb-dev
     sudo apt-get install cmake subversion libftdi1 libftdi1-dev
@@ -37,4 +37,20 @@ Your Java Application will be build in AutoUpdater/Autoupdate/build/libs
 Another usefull command, that lists all available gradle properties:
 
     ./gradlew tasks
+
+Run your AutoUpdate.jar build in the terminal with:
+
+    java -jar AutoUpdate.jar -C
+
+----
+
+# Setup on a RaspberryPi with external Adapter
+
+This project can be used in order to run AutoUpdate on a RaspberryPi through an external USB-ETH connector which enables the Rasberry to programm Netburner MOD-Boards. 
+
+
+
+
+
+
 
