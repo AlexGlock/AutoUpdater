@@ -1,0 +1,6 @@
+# Ignore Gradle installation and build
+.gradle
+/build/
+
+# Ignore package files
+*.jar

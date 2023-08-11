@@ -1,10 +1,8 @@
-# Ignore Gradle project-specific cache directory
+# Ignore top level gradle installation
 .gradle
-
-# Ignore Gradle build output directory
-build
-Autoupdate/bin
-agNBAutoUpdate.jar
 
 # Ignore test binaries
 *.s19
+
+# Ignore vscode settings file
+.vscode
