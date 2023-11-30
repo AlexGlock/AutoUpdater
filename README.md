@@ -1,14 +1,6 @@
-      
-                   _        _    _           _       _       
-        /\        | |      | |  | |         | |     | |      
-       /  \  _   _| |_ ___ | |  | |_ __   __| | __ _| |_ ___ 
-      / /\ \| | | | __/ _ \| |  | | '_ \ / _` |/ _` | __/ _ \
-     / ____ \ |_| | || (_) | |__| | |_) | (_| | (_| | ||  __/
-    /_/    \_\__,_|\__\___/ \____/| .__/ \__,_|\__,_|\__\___|
-                                  | |                        
-                                  |_|                        
+<img src="netburner.png" alt="404" width="500" height="150">
 
-## Netburner AutoUpdate for ARM based platforms ##
+## AutoUpdate for ARM based platforms ##
 
 
 This project contains a gradle development project for a running .jar application of the Netburner-AutoUpdate Tool for ARM based systems.
